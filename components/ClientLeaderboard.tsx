@@ -29,7 +29,6 @@ type Props = {
 };
 
 export default function ClientLeaderboard({ users }: Props) {
-  console.log(users);
   const [selectedUserId, setSelectedUserId] = useState("");
   const [isRank, setisRank] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(false);
