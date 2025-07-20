@@ -1,7 +1,7 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-export async function POST(request: NextResponse) {
+export async function POST(request: NextRequest) {
   try {
     const { name } = await request.json();
 
@@ -12,7 +12,7 @@ export async function POST(request: NextResponse) {
       );
     }
 
-    // Check if user already exists
+    
     const existingUser = await prisma.user.findUnique({
       where: { name: name.trim() },
     });
