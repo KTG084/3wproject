@@ -13,5 +13,8 @@ export default async function Leaderboard() {
     },
   });
 
+  console.log(users);
+  console.log("its working")
+
   return <ClientLeaderboard users={users} />;
 }
