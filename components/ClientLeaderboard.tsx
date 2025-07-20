@@ -1,7 +1,15 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Trophy, Medal, Award, PlusCircle, BarChart, Crown, ChevronUp } from "lucide-react";
+import {
+  Trophy,
+  Medal,
+  Award,
+  PlusCircle,
+  BarChart,
+  Crown,
+  ChevronUp,
+} from "lucide-react";
 import { User } from "@prisma/client";
 import {
   Dialog,
@@ -21,13 +29,14 @@ type Props = {
 };
 
 export default function ClientLeaderboard({ users }: Props) {
+  console.log(users);
   const [selectedUserId, setSelectedUserId] = useState("");
   const [isRank, setisRank] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [lastClaim, setLastClaim] = useState<any>(null);
   const router = useRouter();
-  
+
   const rankedUsers = useMemo(() => {
     return [...users].sort((a, b) => b.totalPoints - a.totalPoints);
   }, [users]);
@@ -148,8 +157,8 @@ export default function ClientLeaderboard({ users }: Props) {
                   </strong>
                 </p>
               </div>
-              <Link 
-                href="/claimhistory" 
+              <Link
+                href="/claimhistory"
                 className="ml-auto text-xs bg-emerald-700/50 hover:bg-emerald-600/50 py-1 px-3 rounded-lg transition-colors"
               >
                 View History
@@ -158,16 +167,14 @@ export default function ClientLeaderboard({ users }: Props) {
           </div>
         )}
 
-        
         <div className="mb-10">
           <h2 className="text-xl font-semibold text-gray-300 mb-6 flex items-center gap-2">
             <Trophy className="w-5 h-5 text-amber-400" />
             Top Performers
           </h2>
           <div className="grid grid-cols-3 gap-6 items-end">
-            
             {topThree[1] && (
-              <div 
+              <div
                 className="bg-gradient-to-b from-slate-700 to-slate-800 border border-slate-600 rounded-xl p-5 pt-10 text-center transition-transform hover:scale-[1.02] cursor-pointer"
                 onClick={() => {
                   setSelectedUserId(topThree[1].id);
@@ -176,24 +183,29 @@ export default function ClientLeaderboard({ users }: Props) {
               >
                 <div className="flex justify-center mb-4">
                   <div className="w-10 h-10 rounded-full bg-gradient-to-r from-slate-600 to-slate-700 flex items-center justify-center mb-2">
-                    <span className="text-xl font-bold text-slate-300">{getRankIcon(2)}</span>
+                    <span className="text-xl font-bold text-slate-300">
+                      {getRankIcon(2)}
+                    </span>
                   </div>
                 </div>
                 <div className="h-16 w-16 mx-auto rounded-full bg-slate-600 mb-4 flex items-center justify-center text-white text-lg font-bold">
                   {topThree[1].name.charAt(0)}
                 </div>
-                <h3 className="font-medium text-gray-100 mb-1">{topThree[1].name}</h3>
+                <h3 className="font-medium text-gray-100 mb-1">
+                  {topThree[1].name}
+                </h3>
                 <div className="flex items-center justify-center gap-1">
                   <ChevronUp className="w-4 h-4 text-emerald-400" />
-                  <p className="text-2xl font-bold text-white">{topThree[1].totalPoints}</p>
+                  <p className="text-2xl font-bold text-white">
+                    {topThree[1].totalPoints}
+                  </p>
                 </div>
                 <p className="text-xs text-gray-400 mt-1">points</p>
               </div>
             )}
 
-            
             {topThree[0] && (
-              <div 
+              <div
                 className="bg-gradient-to-b from-amber-700 to-amber-800 border border-amber-600 rounded-xl p-6 pt-14 text-center shadow-[0_10px_30px_rgba(245,158,11,0.2)] transition-transform hover:scale-[1.02] cursor-pointer"
                 onClick={() => {
                   setSelectedUserId(topThree[0].id);
@@ -206,18 +218,21 @@ export default function ClientLeaderboard({ users }: Props) {
                 <div className="h-20 w-20 mx-auto rounded-full bg-gradient-to-r from-amber-600 to-amber-700 mb-4 flex items-center justify-center text-white text-xl font-bold">
                   {topThree[0].name.charAt(0)}
                 </div>
-                <h3 className="font-medium text-gray-100 mb-1">{topThree[0].name}</h3>
+                <h3 className="font-medium text-gray-100 mb-1">
+                  {topThree[0].name}
+                </h3>
                 <div className="flex items-center justify-center gap-1">
                   <ChevronUp className="w-4 h-4 text-emerald-400" />
-                  <p className="text-3xl font-bold text-white">{topThree[0].totalPoints}</p>
+                  <p className="text-3xl font-bold text-white">
+                    {topThree[0].totalPoints}
+                  </p>
                 </div>
                 <p className="text-xs text-amber-200 mt-1">points</p>
               </div>
             )}
 
-            
             {topThree[2] && (
-              <div 
+              <div
                 className="bg-gradient-to-b from-amber-800/80 to-amber-900/90 border border-amber-700 rounded-xl p-5 pt-10 text-center transition-transform hover:scale-[1.02] cursor-pointer"
                 onClick={() => {
                   setSelectedUserId(topThree[2].id);
@@ -226,16 +241,22 @@ export default function ClientLeaderboard({ users }: Props) {
               >
                 <div className="flex justify-center mb-4">
                   <div className="w-10 h-10 rounded-full bg-gradient-to-r from-amber-700/80 to-amber-800/90 flex items-center justify-center mb-2">
-                    <span className="text-xl font-bold text-amber-300">{getRankIcon(3)}</span>
+                    <span className="text-xl font-bold text-amber-300">
+                      {getRankIcon(3)}
+                    </span>
                   </div>
                 </div>
                 <div className="h-16 w-16 mx-auto rounded-full bg-amber-700/50 mb-4 flex items-center justify-center text-white text-lg font-bold">
                   {topThree[2].name.charAt(0)}
                 </div>
-                <h3 className="font-medium text-gray-100 mb-1">{topThree[2].name}</h3>
+                <h3 className="font-medium text-gray-100 mb-1">
+                  {topThree[2].name}
+                </h3>
                 <div className="flex items-center justify-center gap-1">
                   <ChevronUp className="w-4 h-4 text-emerald-400" />
-                  <p className="text-2xl font-bold text-white">{topThree[2].totalPoints}</p>
+                  <p className="text-2xl font-bold text-white">
+                    {topThree[2].totalPoints}
+                  </p>
                 </div>
                 <p className="text-xs text-amber-200 mt-1">points</p>
               </div>
@@ -283,7 +304,9 @@ export default function ClientLeaderboard({ users }: Props) {
               >
                 <div className="flex items-center gap-4">
                   <div className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center">
-                    <span className="text-sm font-medium text-gray-300">{rank}</span>
+                    <span className="text-sm font-medium text-gray-300">
+                      {rank}
+                    </span>
                   </div>
                   <div>
                     <h3 className="font-medium text-gray-100">{user.name}</h3>
@@ -298,7 +321,9 @@ export default function ClientLeaderboard({ users }: Props) {
                   <div className="text-lg font-bold text-white">
                     {user.totalPoints}
                   </div>
-                  <div className="text-xs text-gray-400 w-12 text-right">points</div>
+                  <div className="text-xs text-gray-400 w-12 text-right">
+                    points
+                  </div>
                 </div>
               </div>
             );
